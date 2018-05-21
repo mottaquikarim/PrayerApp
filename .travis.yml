@@ -4,7 +4,7 @@ python:
   - "3.6"
 services:
   - docker
-
-script:
-  - make clean
-  - make test
+before_install: make clean
+before_script:
+  - export TEST="1"
+script: make test
