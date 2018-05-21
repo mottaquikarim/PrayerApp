@@ -1,0 +1,10 @@
+sudo: required
+language: python
+python:
+  - "3.6"
+services:
+  - docker
+
+script:
+  - make clean
+  - make test
