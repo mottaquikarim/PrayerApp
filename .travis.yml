@@ -7,6 +7,7 @@ services:
 env:
   global:
     - CC_TEST_REPORTER_ID=$CC_TEST_REPORTER_ID
+    - GOOGLE_API_KEY=$GOOGLE_API_KEY
 before_install: make clean
 before_script:
   - export TEST="1"

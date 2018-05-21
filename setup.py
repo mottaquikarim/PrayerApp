@@ -8,5 +8,4 @@ setup(
     packages=find_packages('src'),
     zip_safe=True,
     setup_requires=['wheel'],
-    )
-
+)
