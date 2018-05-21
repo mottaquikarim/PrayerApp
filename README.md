@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mottaquikarim/PrayerApp.svg?branch=master)](https://travis-ci.org/mottaquikarim/PrayerApp)
+[![Build Status](https://travis-ci.org/mottaquikarim/PrayerApp.svg?branch=master)](https://travis-ci.org/mottaquikarim/PrayerApp) [![Test Coverage](https://api.codeclimate.com/v1/badges/3797d09b2aee38a8b56e/test_coverage)](https://codeclimate.com/github/mottaquikarim/PrayerApp/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/3797d09b2aee38a8b56e/maintainability)](https://codeclimate.com/github/mottaquikarim/PrayerApp/maintainability)
 
 # PrayerApp
 
