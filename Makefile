@@ -26,11 +26,12 @@ test-dev: test
 
 ## Mainly local dev helper, runs a lot faster for quick
 ## syntax updates, etc
+## activating shell cmd in make;
+## ref: https://stackoverflow.com/a/24736236/8285967
 quick-test: clean
-	## activating shell cmd in make;
-	## ref: https://stackoverflow.com/a/24736236/8285967
 	( \
 		source .venv/bin/activate; \
+		source envvars; \
 		pip install --trusted-host None --no-index --find-links ./dist prayerapp; \
 		pytest ./test; \
 		deactivate; \

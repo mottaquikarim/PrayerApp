@@ -8,7 +8,8 @@ services:
       context: .
       dockerfile: docker/prayerapp/Dockerfile
     working_dir: /app
-    env_file: ${DOCKER_ENV_FILE:-envvars}
+    environment:
+      - TEST
     volumes:
       - .:/app
 
