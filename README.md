@@ -6,6 +6,8 @@
 
 *Simple app that returns times to pray based on lat, lon, and timestamp.*
 
+**NOTE**: This is currently a work in progress, porting over implementation from a private repo.
+
 ## Usage and Installation
 
 From terminal, pull down this repo:
@@ -45,7 +47,7 @@ $ virtualenv -p python3 .venv
 $ make quick-test
 ```
 
-This will activate `.venv`, run tests, deactivate.
+This will activate `.venv`, run tests, deactivate. **NOTE**: currently `make quick-test` is failing.
 
 
 ## Features
