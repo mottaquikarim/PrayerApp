@@ -10,6 +10,7 @@ services:
     working_dir: /app
     environment:
       - TEST
+      - CC_TEST_REPORTER_ID
     volumes:
       - .:/app
 
