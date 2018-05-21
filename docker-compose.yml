@@ -11,6 +11,7 @@ services:
     environment:
       - TEST
       - CC_TEST_REPORTER_ID
+      - GOOGLE_API_KEY
     volumes:
       - .:/app
 
