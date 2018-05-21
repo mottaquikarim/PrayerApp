@@ -10,12 +10,14 @@ set -exo pipefail
   # or if making it up is bad in any way
   GIT_COMMITTED_AT=$(date +%s)
   export GIT_COMMITTED_AT
-  cc-test-reporter before-build
+  curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  chmod +x ./cc-test-reporter
+  ./cc-test-reporter before-build
 } || true
 
 pytest ./test
 EXIT_CODE=$?
 
-[ -z "${CC_TEST_REPORTER_ID}" ] || cc-test-reporter after-build --debug --exit-code ${EXIT_CODE} || true
+[ -z "${CC_TEST_REPORTER_ID}" ] || ./cc-test-reporter after-build --debug --exit-code ${EXIT_CODE} || true
 
 exit ${EXIT_CODE}
