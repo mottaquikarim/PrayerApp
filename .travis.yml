@@ -15,4 +15,4 @@ before_script:
   - ./cc-test-reporter before-build
 script: make test
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build -d --exit-code $TRAVIS_TEST_RESULT
