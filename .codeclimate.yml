@@ -1,0 +1,35 @@
+version: "2"
+
+checks:
+  argument-count:
+    config:
+      threshold: 8
+  file-lines:
+    enabled: false
+  method-lines:
+    config:
+      threshold: 50
+  return-statements:
+    config:
+      threshold: 10
+
+plugins:
+  pep8:
+    enabled: true
+  fixme:
+    enabled: true
+    config:
+      strings:
+      - TODO
+  shellcheck:
+    enabled: true
+
+exclude_patterns:
+  - ".eggs/"
+  - ".venv/"
+  - ".serverless/"
+  - "build/"
+  - "dist/"
+  - "htmlcov/"
+  - "node_modules/"
+  - "src/prayerapp/__init__.*"
