@@ -1,0 +1,21 @@
+version: '2.1'
+services:
+
+  # service that includes test dependencies
+  # used to run tests
+  prayerapp:
+    build:
+      context: .
+      dockerfile: docker/prayerapp/Dockerfile
+    working_dir: /app
+    env_file: ${DOCKER_ENV_FILE:-envvars}
+    volumes:
+      - .:/app
+
+  # used to build py package in make dist
+  prayerapp-dist:
+    image: python:3.6
+    working_dir: /app
+    command: python setup.py bdist_wheel
+    volumes:
+      - .:/app
