@@ -33,4 +33,4 @@ exclude_patterns:
   - "htmlcov/"
   - "node_modules/"
   - "src/prayerapp/__init__.*"
-  - "src/prayerapp/praytimes.py
+  - "src/prayerapp/praytimes.py"
