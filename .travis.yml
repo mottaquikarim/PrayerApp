@@ -11,8 +11,8 @@ env:
 before_install: make clean
 before_script:
   - export TEST="1"
-  - export GIT_BRANCH=TRAVIS_BRANCH
+  - export GIT_BRANCH=$TRAVIS_BRANCH
   - echo $TRAVIS_BRANCH
-  - export GIT_COMMIT_SHA=TRAVIS_PULL_REQUEST_SHA
-  - echo $TRAVIS_PULL_REQUEST_SHA
+  - export GIT_COMMIT_SHA=$TRAVIS_COMMIT
+  - echo $TRAVIS_COMMIT
 script: make test
