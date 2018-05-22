@@ -8,9 +8,9 @@ env:
   global:
     - CC_TEST_REPORTER_ID=$CC_TEST_REPORTER_ID
     - GOOGLE_API_KEY=$GOOGLE_API_KEY
-    - GIT_BRANCH=$TRAVIS_BRANCH
-    - GIT_COMMIT_SHA=$TRAVIS_COMMIT
 before_install: make clean
 before_script:
   - export TEST="1"
+  - export GIT_BRANCH=$TRAVIS_BRANCH
+  - export GIT_COMMIT_SHA=$TRAVIS_COMMIT
 script: make test
