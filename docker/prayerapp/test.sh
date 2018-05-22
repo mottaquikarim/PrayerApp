@@ -20,6 +20,6 @@ set -exo pipefail
 pytest ./test
 EXIT_CODE=$?
 
-[ -z "${CC_TEST_REPORTER_ID}" ] || ./cc-test-reporter after-build --debug --exit-code ${EXIT_CODE} || true
+[ -z "${CC_TEST_REPORTER_ID}" ] || ./cc-test-reporter after-build -t coverage.py --debug --exit-code ${EXIT_CODE} || true
 
 exit ${EXIT_CODE}
