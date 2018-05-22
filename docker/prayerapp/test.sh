@@ -10,9 +10,9 @@ set -exo pipefail
   # or if making it up is bad in any way
   GIT_COMMITTED_AT=$(date +%s)
   export GIT_COMMITTED_AT
-  GIT_BRANCH=$(TRAVIS_COMMIT)
+  GIT_BRANCH=$TRAVIS_COMMIT
   export GIT_BRANCH
-  GIT_COMMIT_SHA=$(TRAVIS_BRANCH)
+  GIT_COMMIT_SHA=$TRAVIS_BRANCH
   export GIT_COMMIT_SHA
   curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   chmod +x ./cc-test-reporter
