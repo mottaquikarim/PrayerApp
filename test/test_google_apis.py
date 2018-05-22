@@ -33,6 +33,21 @@ class TestGoogleAPIs(TestCase):
         assert p.get('api_key') == 'test'
         assert p.get('t') == 1
 
+    def test_validate_params_requireds(self):
+        with pytest.raises(Exception) as e:
+            p = GoogleAPIs.validate_params('t', {'p': 1}, {'d': {'type': int, }})
+
+        with pytest.raises(Exception) as e:
+            p = GoogleAPIs.validate_params('t', {'d': '1'}, {'d': {'type': int, }})
+
+        with pytest.raises(Exception) as e:
+            p = GoogleAPIs.validate_params('t', {'d': '1'}, {'d': {'type': str,
+                                                                   "matches": ".*,.*"}})
+
+        p = GoogleAPIs.validate_params('t', {'d': 'a,b'}, {'d': {'type': str,
+                                                                 "matches": ".*,.*"}})
+        assert p == {'api_key': 't', 'd': 'a,b'}
+
     @patch('prayerapp.google_apis.requests.get')
     def test_do_api_call(self, MockGetReq):
         class MockGet(object):
