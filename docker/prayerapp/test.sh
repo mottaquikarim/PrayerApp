@@ -17,7 +17,10 @@ set -exo pipefail
   ./cc-test-reporter before-build
 } || true
 
-pytest --cov=prayerapp ./test
+coverage run --parallel -m pytest ./test
+coverage combine
+coverage report
+coverage xml
 EXIT_CODE=$?
 
 [ -z "${CC_TEST_REPORTER_ID}" ] || ./cc-test-reporter after-build -t coverage.py --debug --exit-code ${EXIT_CODE} || true
