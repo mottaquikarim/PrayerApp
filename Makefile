@@ -24,6 +24,16 @@ test: build-dev
 
 test-dev: test
 
+before-build:
+	curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+	chmod +x ./cc-test-reporter
+	./cc-test-reporter before-build
+
+after-build:
+	./cc-test-reporter after-build -t coverage.py --debug
+
+cc-test: before-build test after-build
+
 ## Mainly local dev helper, runs a lot faster for quick
 ## syntax updates, etc
 ## activating shell cmd in make;
