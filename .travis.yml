@@ -15,4 +15,4 @@ before_script:
   - echo $TRAVIS_BRANCH
   - export GIT_COMMIT_SHA=$TRAVIS_COMMIT
   - echo $TRAVIS_COMMIT
-script: make cc-test
+script: make test
