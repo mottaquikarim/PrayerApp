@@ -1,3 +1,10 @@
 [run]
 omit =
     **/prayerapp/praytimes.py
+branch = True
+source = prayerapp
+
+[paths]
+source =
+   src/prayerapp
+   /usr/*/lib/python*/site-packages/prayerapp

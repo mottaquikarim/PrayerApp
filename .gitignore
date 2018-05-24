@@ -7,5 +7,7 @@ dist/*
 */__pycache__/*
 .coverage
 coverage.xml
+pytest.xml
 htmlcov/*
 envvars
+cc-test-reporter
