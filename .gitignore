@@ -11,3 +11,4 @@ pytest.xml
 htmlcov/*
 envvars
 cc-test-reporter
+cache
