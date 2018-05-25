@@ -145,7 +145,7 @@ class TestGoogleQueryEndpoint(TestCase):
 class TestGeocode(TestCase):
 
     def test_geocode(self):
-        Geocode('test', {
+        GetTimezone('test', {
             'location': 'a,b',
             'timestamp': 2,
         })
@@ -154,6 +154,6 @@ class TestGeocode(TestCase):
 class TestGetTimezone(TestCase):
 
     def test_gettimezone(self):
-        GetTimezone('test', {
+        Geocode('test', {
             'address': 'a,b',
         })

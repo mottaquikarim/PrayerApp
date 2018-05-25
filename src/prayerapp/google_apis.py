@@ -92,8 +92,8 @@ class GoogleQueryEndpoint(GoogleAPICall):
         return self.do_api_call(self.endpoint)
 
 
-class Geocode(GoogleQueryEndpoint):
-    endpoint = '/maps/api/geocode/json'
+class GetTimezone(GoogleQueryEndpoint):
+    endpoint = '/maps/api/timezone/json'
     required_params = {
         'location': {'type': str, 'matches': '.*,.*'},
         'timestamp': {'type': int},
@@ -104,8 +104,8 @@ class Geocode(GoogleQueryEndpoint):
                          required_params=self.required_params)
 
 
-class GetTimezone(GoogleQueryEndpoint):
-    endpoint = '/maps/api/timezone/json'
+class Geocode(GoogleQueryEndpoint):
+    endpoint = '/maps/api/geocode/json'
     required_params = {
         'address': {'type': str, 'matches': '.*,.*'},
     }
