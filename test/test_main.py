@@ -4,6 +4,7 @@ import shelve
 from datetime import datetime
 from os import environ
 from time import time
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from prayerapp.conf import CACHE_STORE
@@ -45,11 +46,35 @@ def test_cached_timezone():
     assert tz == mock_timezone_payload
 
 
-def test_cached_geocode():
+@patch('prayerapp.main.Geocode')
+def test_cached_geocode(MockGeocode):
     expected_retval = [40.7127753, -74.0059728]
+    retval = {'results': [
+        {
+            'geometry': {
+                'location': {
+                    'lat': expected_retval[0],
+                    'lng': expected_retval[1],
+                }
+            }
+        }
+    ]}
+
+    def fake_method(*a, **kw):
+        return SimpleNamespace(query=lambda: retval)
+
+    MockGeocode.side_effect = fake_method
+
+    try:
+        cache = shelve.open(CACHE_STORE)
+        del cache['BY_CITY::nyc,us']
+        cache.close()
+    except:
+        pass
+
     cache = shelve.open(CACHE_STORE)
     cache['BY_CITY::nyc,us'] = {
-        'retval': expected_retval,
+        'retval': retval,
         'datetime': datetime.today().date()
     }
     gc = cached_geocode('test')

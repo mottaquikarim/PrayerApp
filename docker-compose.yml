@@ -1,6 +1,15 @@
 version: '2.1'
 services:
 
+  # service that includes serverless
+  # used for deployments in make deploy
+  prayerapp-deploy:
+    build:
+      context: .
+      dockerfile: docker/prayerapp-deploy/Dockerfile
+    env_file: ${DOCKER_ENV_FILE:-envvars}
+
+
   # service that includes test dependencies
   # used to run tests
   prayerapp:

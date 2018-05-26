@@ -1,0 +1,36 @@
+service: prayerappv2
+
+plugins:
+  - serverless-python-requirements
+
+provider:
+  name: aws
+  runtime: python3.6
+  memorySize: 512
+  timeout: 60
+  stage: dev
+  region: us-east-1
+  environment:
+    app: prayerapp
+    stage: ${self:custom.stage, 'dev'}
+
+# Package explicitly for complete control over what's included
+package:
+  excludeDevDependencies: false
+  exclude:
+    - ./**
+  include:
+    - .requirements.zip
+    - prayerapp/**
+
+functions:
+  location:
+    handler: prayerapp.handlers.by_location
+    environment:
+      stage: ${env:stage}
+      GOOGLE_API_KEY: ${env:GOOGLE_API_KEY}
+    events:
+      - http:
+          path: location/{lat}/{lng}
+          method: get
+          cors: true

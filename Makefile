@@ -13,11 +13,26 @@ clean:
 	## fix for file import error...
 	rm -rf ./test/__pycache__
 
-dist:
+require-stage:
+ifndef stage
+	$(error stage arg is required for this target)
+endif
+
+cp-envvars:
+	cp ./envvars.sample ./envvars
+
+dist: cp-envvars
 	docker-compose run prayerapp-dist
+
+build-deploy: dist
+	docker-compose build ${app}-deploy
 
 build-dev: dist
 	docker-compose build ${app}
+
+deploy: require-stage build-deploy
+	docker-compose run ${app}-deploy \
+	  ./node_modules/serverless/bin/serverless deploy --stage ${stage}
 
 test: build-dev
 	docker-compose run ${app} /test.sh
