@@ -6,7 +6,7 @@ from prayerapp.cache import Cache
 from prayerapp.google_apis import Geocode, GetTimezone
 from prayerapp.praytimes import PrayTimes
 
-geocache = Cache(lambda *a, **kw: '{},{}}'.format(
+geocache = Cache(lambda *a, **kw: '{},{}'.format(
     kw.get('city', 'nyc'),
     kw.get('country', 'us')), 'BY_CITY',)
 tzcache = Cache(lambda *a, **kw: '{},{}'.format(a[1], a[2]), 'BY_TIMEZONE')
@@ -15,7 +15,7 @@ tzcache = Cache(lambda *a, **kw: '{},{}'.format(a[1], a[2]), 'BY_TIMEZONE')
 @geocache.cache()
 def cached_geocode(api_key, city='nyc', country='us'):
     geocoded_data = Geocode(api_key, {
-        'address': '{},{}}'.format(city, country),
+        'address': '{},{}'.format(city, country),
     }).query()
 
     location = geocoded_data['results'][0]['geometry']['location']
