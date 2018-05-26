@@ -8,6 +8,9 @@ env:
   global:
     - CC_TEST_REPORTER_ID=$CC_TEST_REPORTER_ID
     - GOOGLE_API_KEY=$GOOGLE_API_KEY
+    - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+    - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+    - AWS_DEFAULT_REGION=us-east-1
 before_install: make clean
 before_script:
   - export TEST="1"
@@ -16,3 +19,7 @@ before_script:
   - export GIT_COMMIT_SHA=$TRAVIS_COMMIT
   - echo $TRAVIS_COMMIT
 script: make test
+deploy:
+  script: make clean deploy stage=prod
+  on:
+    branch: master
