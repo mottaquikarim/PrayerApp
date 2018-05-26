@@ -1,4 +1,14 @@
-#!/bin/bash
+# AWS keys are mostly used locally
+# The default region is expected by some poorly impl boto clients
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+AWS_DEFAULT_REGION=us-east-1
 
-export TEST=1
-export GOOGLE_API_KEY=YOUR_GOOGLE_API_KEY
+# AWS Lambda stage
+stage
+
+# Google API key defined in secrets store of some sort
+GOOGLE_API_KEY=YOUR_GOOGLE_API_KEY
+
+# For assertions
+TEST=1

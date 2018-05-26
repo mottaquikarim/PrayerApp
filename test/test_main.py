@@ -49,7 +49,17 @@ def test_cached_geocode():
     expected_retval = [40.7127753, -74.0059728]
     cache = shelve.open(CACHE_STORE)
     cache['BY_CITY::nyc,us'] = {
-        'retval': expected_retval,
+        'retval': {'results': [
+            {
+                'geometry': {
+                    'location': {
+                        'lat': expected_retval[0],
+                        'lng': expected_retval[1],
+                    }
+                }
+            }
+        ]
+        },
         'datetime': datetime.today().date()
     }
     gc = cached_geocode('test')
