@@ -18,7 +18,10 @@ ifndef stage
 	$(error stage arg is required for this target)
 endif
 
-dist:
+cp-envvars:
+	cp ./envvars.sample ./envvars
+
+dist: cp-envvars
 	docker-compose run prayerapp-dist
 
 build-deploy: dist

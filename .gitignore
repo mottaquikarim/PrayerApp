@@ -10,6 +10,7 @@ coverage.xml
 pytest.xml
 htmlcov/*
 envvars
+envvars.mine
 cc-test-reporter
 cache
 node_modules/*
