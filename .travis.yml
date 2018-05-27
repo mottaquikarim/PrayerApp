@@ -18,7 +18,9 @@ before_script:
   - echo $TRAVIS_BRANCH
   - export GIT_COMMIT_SHA=$TRAVIS_COMMIT
   - echo $TRAVIS_COMMIT
-script: make test
+script:
+  - make test
+  - make deploy ftest stage=test
 deploy:
   provider: script
   script: make deploy stage=prod

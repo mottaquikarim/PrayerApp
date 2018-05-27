@@ -5,6 +5,7 @@ build/*
 dist/*
 */*.egg-info
 */__pycache__/*
+*/**/__pycache__/*
 .coverage
 coverage.xml
 pytest.xml
@@ -14,3 +15,6 @@ envvars.mine
 cc-test-reporter
 cache
 node_modules/*
+log.html
+output.xml
+report.html
