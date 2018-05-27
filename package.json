@@ -21,6 +21,7 @@
   "homepage": "https://github.com/mottaquikarim/PrayerApp",
   "devDependencies": {
     "serverless": "^1.27.3",
-    "serverless-python-requirements": "3.0.9"
+    "serverless-python-requirements": "3.0.9",
+    "spectacle-docs": "^1.0.3"
   }
 }
