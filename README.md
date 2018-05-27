@@ -6,7 +6,7 @@
 
 *Simple app that returns times to pray based on lat, lon, and timestamp.*
 
-This app exposes a simple web API for querying prayer times (in the islamic tradition) by space and time. See an example of the deployed app **[here](https://8ldbpgh8mh.execute-api.us-east-1.amazonaws.com/prod/location/40.7128/-74.0059)**. This app leverages the **[praytimes.org](http://praytimes.org/manual)** project to cacluate prayer times. It is worth noting that the version of the **praytimes.org** library used here requires a patch due to a python scope issue (not sure how to push that patch back upstream, the project seems largely abandoned).
+This app exposes a simple web API for querying prayer times (in the islamic tradition) by space and time. See an example of the deployed app **[here](https://8ldbpgh8mh.execute-api.us-east-1.amazonaws.com/prod/location/40.7128/-74.0059)** (<strong><a href="https://mottaquikarim.github.io/PrayerApp/docs/index.html" target="_blank">Docs here</a></strong>). This app leverages the **[praytimes.org](http://praytimes.org/manual)** project to cacluate prayer times. It is worth noting that the version of the **praytimes.org** library used here requires a patch due to a python scope issue (not sure how to push that patch back upstream, the project seems largely abandoned).
 
 This app is built and tested with Python3.6 and deployed to AWS Lambda using the Serverless Framework through Travis CI. We 
 use Codeclimate to keep track of maintainability and test coverage.
@@ -14,7 +14,7 @@ use Codeclimate to keep track of maintainability and test coverage.
 There are currently no limitations on API usage on the `/prod` endpoint, which is CORS enabled (therefore, possible to use with frontend javascript). This policy will remain if and until there is a good reason to restrict usage.
 
 ## Table of Contents
-* **[API Docs](https://mottaquikarim.github.io/PrayerApp/docs/index.html)**
+* <strong><a href="https://mottaquikarim.github.io/PrayerApp/docs/index.html" target="_blank">API Docs</a></strong>
 * **[System Requirements](#system-requirements)**
 * **[Usage and Installation](#usage-and-installation)**
 * **[Deployment](#deployment)**
@@ -58,17 +58,33 @@ Serverless Framework is used to handle deployment. Look at [Serverless](https://
 Assuming `~/.aws/credentials` are exported to your envirnonment, simply run:
 
 ```
-$ make clean deploy stage=dev
+$ make clean deploy stage=test
 ```
 
 Note that `stage` is a concept from AWS Lambda, it can be any arbitrary value (which will be reflected in the deployed lambda url, it is used mainly to segment environments).
 
 If you don't have `~/.aws/credentials` folder or are not sure why it is needed, please take a look at [these docs](https://serverless.com/framework/docs/providers/aws/cli-reference/).
 
+### Functional Tests
+
+**[Robot Framework](http://robotframework.org/)** is used to handle functional tests. To run ftests (assuming deployment credentials are sorted out),
+
+```
+$ make clean deploy ftest stage=test
+```
+### Travis Secrets
+
+In order to run build process, the following env variables must be set in Travis settings:
+
+* **`AWS_ACCESS_KEY_ID`**
+* **`AWS_SECRET_ACCESS_KEY`**
+* **`CC_TEST_REPORTER_ID`**
+* **`GOOGLE_API_KEY`**
+
+The **`CC_TEST_REPORTER_ID`** env variable is for code climate test coverage.
+
 ### ToDos
 
-* Swagger for documentation
-* Set up functional testing framework, either Robot or a hacky solution with pytest and make for now
 * Get `/city/{city}/{country}` support back up
 * Implement endpoint for IFTTT
 
