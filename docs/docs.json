@@ -1,0 +1,122 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This app exposes a simple web API for querying prayer times (in the islamic tradition) by space and time. <br><br>See an example of the deployed app **[here](https://8ldbpgh8mh.execute-api.us-east-1.amazonaws.com/prod/location/40.7128/-74.0059)**. <br><br>This app leverages the **[praytimes.org](http://praytimes.org/manual)** project to cacluate prayer times. It is worth noting that the version of the **praytimes.org** library used here requires a patch due to a python scope issue (not sure how to push that patch back upstream, the project seems largely abandoned). <br><br>This app is built and tested with Python3.6 and deployed to AWS Lambda using the Serverless Framework through Travis CI. We use Codeclimate to keep track of maintainability and test coverage. <br><br>There are currently no limitations on API usage on the `/prod` endpoint, which is CORS enabled (therefore, possible to use with frontend javascript). This policy will remain if and until there is a good reason to restrict usage.",
+    "version": "1.0.0",
+    "title": "Prayer API",
+    "license": {
+      "name": "MIT",
+      "url": "github.com/mottaquikarim/PrayerApp/blob/master/LICENSE"
+    }
+  },
+  "host": "8ldbpgh8mh.execute-api.us-east-1.amazonaws.com",
+  "basePath": "/prod",
+  "tags": [
+    {
+      "name": "location",
+      "description": "Get prayer times by lat/lng coordinates"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/location/{lat}/{lng}": {
+      "get": {
+        "tags": [
+          "location"
+        ],
+        "summary": "/location/{lat}/{lng}",
+        "description": "Get prayertimes for (lat, lng) by date",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date",
+            "description": "date as unix timestamp <br/>`ex. 1527249151`",
+            "required": false,
+            "type": "int",
+            "default": "now"
+          },
+         {
+            "in": "query",
+            "name": "calc-method",
+            "description": "method to use for calculating prayer times <br/><br/> `ex. MWL, ISNA, Egypt, Makkah, Karachi, Tehran, Jafari`",
+            "required": false,
+            "type": "string",
+            "default": "ISNA"
+          },
+         {
+            "in": "query",
+            "name": "time-format",
+            "description": "how to format times <br/><br/> `ex. 12h, 24h`",
+            "required": false,
+            "type": "string",
+            "default": "12h"
+          }
+        ],
+            "responses":{
+               "200":{
+                  "description":"Prayer object in response",
+                  "schema":{
+                  	"$ref": "#/definitions/Prayers"
+                  }
+               },
+               "400":{
+                  "description":"Failure message in response",
+                  "schema":{
+                  	"type": "object",
+                  	"properties": {
+                  		"statusCode":{
+                  			"type": 400
+                  		},
+                  		"body":{
+                  			"type":"error message"
+                  		}
+                  	}
+                  }
+               }
+            }
+      }
+    }
+  },
+  "definitions":{
+  	"Prayers": {
+  		"type": "object",
+  		"properties":{
+  			"imsak":{
+  				"type":"string"
+  			},
+  			"fajr":{
+  				"type":"string"
+  			},
+   			"sunrise":{
+  				"type":"string"
+  			},
+   			"dhuhr":{
+  				"type":"string"
+  			},
+   			"asr":{
+  				"type":"string"
+  			},
+   			"sunset":{
+  				"type":"string"
+  			},
+   			"maghrib":{
+  				"type":"string"
+  			},
+   			"isha":{
+  				"type":"string"
+  			},
+   			"midnight":{
+  				"type":"string"
+  			}
+  		}
+  	}
+  }
+}

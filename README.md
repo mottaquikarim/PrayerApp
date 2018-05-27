@@ -14,29 +14,12 @@ use Codeclimate to keep track of maintainability and test coverage.
 There are currently no limitations on API usage on the `/prod` endpoint, which is CORS enabled (therefore, possible to use with frontend javascript). This policy will remain if and until there is a good reason to restrict usage.
 
 ## Table of Contents
-* **[API Docs](#api-docs)**
+* **[API Docs](https://mottaquikarim.github.io/PrayerApp/docs/index.html)**
 * **[System Requirements](#system-requirements)**
 * **[Usage and Installation](#usage-and-installation)**
 * **[Deployment](#deployment)**
 * **[Todos](#todos)**
 * **[Clients](#clients)**
-
-### API Docs
-
-### **[/prod/location/{lat}/{lng}](https://8ldbpgh8mh.execute-api.us-east-1.amazonaws.com/prod/location/40.7128/-74.0059)**
-
-#### **Sample Response**
-*for: /prod/location/40.7128/-74.0059*
-
-```
-{"imsak": "3:46am", "fajr": "3:56am", "sunrise": "5:30am", "dhuhr": "12:53pm", "asr": "4:51pm", "sunset": "8:16pm", "maghrib": "8:16pm", "isha": "9:51pm", "midnight": "12:53am"}
-```
-
-#### **Query Params**
-*all query params are optional*
-* **date**: [unix timestamp] (ie, 1527249151 - defaults to time now if empty)
-* **calc-method**: MWL | ISNA | Egypt | Makkah | Karachi | Tehran | Jafari (default: ISNA)
-* **time-format**: 12h | 24h (default: 12h)
 
 ### System Requirements
 

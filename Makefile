@@ -44,6 +44,9 @@ ftest: require-stage build-dev
 
 test-dev: test
 
+build-docs:
+	./node_modules/.bin/spectacle -1 -t docs docs/docs.json
+
 ## Mainly local dev helper, runs a lot faster for quick
 ## syntax updates, etc
 ## activating shell cmd in make;
