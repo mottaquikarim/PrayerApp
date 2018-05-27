@@ -17,6 +17,7 @@ There are currently no limitations on API usage on the `/prod` endpoint, which i
 * <strong><a href="https://mottaquikarim.github.io/PrayerApp/docs/index.html" target="_blank">API Docs</a></strong>
 * **[System Requirements](#system-requirements)**
 * **[Usage and Installation](#usage-and-installation)**
+* **[Secrets](#secrets)**
 * **[Deployment](#deployment)**
 * **[Todos](#todos)**
 * **[Clients](#clients)**
@@ -51,6 +52,21 @@ $ make test
 
 Will build app and run tests. 
 
+### Secrets
+
+Secrets are managed through environment variables, fed in via CI (Travis) or manually exported in local environment. To run deployment and/or ftest in local environment, first export all env variables as defined in `envvars.sample`. **NOTE**: the app's Dockerfiles copy `envvars.sample` to `envvars`, which is used for container builds. 
+
+#### Managing Travis Secrets
+In order to run deployment process "for reals" (ie, to deploy to a prod env), the following env variables must be set (securely) in Travis settings:
+
+* **`AWS_ACCESS_KEY_ID`**
+* **`AWS_SECRET_ACCESS_KEY`**
+* **`CC_TEST_REPORTER_ID`**
+* **`GOOGLE_API_KEY`**
+
+The **`CC_TEST_REPORTER_ID`** env variable is for code climate test coverage.
+
+
 ### Deployment
 
 Serverless Framework is used to handle deployment. Look at [Serverless](https://serverless.com/framework/docs/getting-started/) getting started guide. 
@@ -72,16 +88,8 @@ If you don't have `~/.aws/credentials` folder or are not sure why it is needed, 
 ```
 $ make clean deploy ftest stage=test
 ```
-### Travis Secrets
 
-In order to run build process, the following env variables must be set in Travis settings:
-
-* **`AWS_ACCESS_KEY_ID`**
-* **`AWS_SECRET_ACCESS_KEY`**
-* **`CC_TEST_REPORTER_ID`**
-* **`GOOGLE_API_KEY`**
-
-The **`CC_TEST_REPORTER_ID`** env variable is for code climate test coverage.
+(Again, worth noting that envvars must be exported in order for ftests to pass)
 
 ### ToDos
 
