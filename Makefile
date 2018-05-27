@@ -37,6 +37,11 @@ deploy: require-stage build-deploy
 test: build-dev
 	docker-compose run ${app} /test.sh
 
+ftest: require-stage build-dev
+	docker-compose run ${app} robot \
+	  --variablefile ftest/env/${stage}.py \
+	  ftest
+
 test-dev: test
 
 ## Mainly local dev helper, runs a lot faster for quick
