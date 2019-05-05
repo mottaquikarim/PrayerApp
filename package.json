@@ -22,6 +22,6 @@
   "devDependencies": {
     "serverless": "^1.27.3",
     "serverless-python-requirements": "3.0.9",
-    "spectacle-docs": "^1.0.3"
+    "spectacle-docs": "^1.0.7"
   }
 }
