@@ -10,7 +10,7 @@ def test_by_location():
             'lng': -74.0059728,
         },
         'queryStringParameters': {
-            'date': 1527249151,
+            'date': 1527249151, 
         }
     }, {})
 
@@ -30,5 +30,4 @@ def test_by_location_err():
         }
     }, {})
 
-    print(res)
     assert res.get('body') == 'timezone offsets not found!'

@@ -68,7 +68,7 @@ class TestGoogleAPICall(object):
     def test_init(self):
 
         g = GoogleAPICall('test')
-        assert g.params == {'api_key': 'test'}
+        assert g.params == {'key': 'test'}
         assert g.required_params == {}
 
     def test_get_endpoint(self):
@@ -77,7 +77,7 @@ class TestGoogleAPICall(object):
         })
 
         endpt = g.get_endpoint('/test_endpoint')
-        assert endpt == 'https://maps.googleapis.com/test_endpoint?api_key=test&test=1'
+        assert endpt == 'https://maps.googleapis.com/test_endpoint?key=test&test=1'
 
     def test_validate_params(self):
         g = GoogleAPICall('test', params={
@@ -85,9 +85,9 @@ class TestGoogleAPICall(object):
         })
 
         # assert that if required params not present
-        # we get back input params mutated with api_key
+        # we get back input params mutated with key
         g.validate_params()
-        assert g.params == {'test': 1, 'api_key': 'test'}
+        assert g.params == {'test': 1, 'key': 'test'}
 
         # assert error raised if required param does not exist
         with pytest.raises(GValidationException) as e:
@@ -108,7 +108,7 @@ class TestGoogleAPICall(object):
             'timestamp': {'type': int},
         })
 
-        assert g.params == {'test': '1', 'api_key': 'test', 'timestamp': 2}
+        assert g.params == {'test': '1', 'key': 'test', 'timestamp': 2}
 
 
 class TestGoogleQueryEndpoint(TestCase):
@@ -123,7 +123,7 @@ class TestGoogleQueryEndpoint(TestCase):
         })
 
         assert gq.endpoint == '/test_endpoint'
-        assert gq.params == {'test': '1', 'api_key': 'test', 'timestamp': 2}
+        assert gq.params == {'test': '1', 'key': 'test', 'timestamp': 2}
 
     @patch('prayerapp.google_apis.requests.get')
     def test_query(self, MockRequestsGet):

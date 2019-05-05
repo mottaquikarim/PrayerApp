@@ -55,7 +55,7 @@ class GoogleAPICall(object):
 
     def __init__(self, api_key, params=None, required_params=None):
         self.params = params or {}
-        self.params.update({'api_key': api_key})
+        self.params.update({'key': api_key})
         self.required_params = required_params or {}
 
         self.validate_params()

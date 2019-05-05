@@ -40,7 +40,7 @@ def test_cached_timezone():
         'retval': mock_timezone_payload,
         'datetime': datetime.today().date()
     }
-    tz = cached_timezone('test', 40.7128, -74.0059, 1527249151)
+    tz = cached_timezone(environ.get('GOOGLE_API_KEY'), 40.7128, -74.0059, 1527249151)
     cache.close()
 
     assert tz == mock_timezone_payload
