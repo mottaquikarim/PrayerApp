@@ -3,6 +3,8 @@ import shelve
 from datetime import datetime, timedelta
 from time import time
 
+from fcache.cache import FileCache
+
 from prayerapp.conf import CACHE_STORE
 
 lambda_validate_expiry = lambda storedDate: storedDate < datetime.today().date()
@@ -23,11 +25,9 @@ class Cache(object):
         return "{}::{}".format(self.prefix, self.encode_key(*a, **kw))
 
     def cache_updateable(self, cache, key):
-        cache_key = None
         try:
-            cache_key = cache[key]
             has_flag = True
-        except:
+        except Exception:
             return False
 
         has_datetime = has_flag and cache[key].get('datetime')
@@ -38,7 +38,8 @@ class Cache(object):
     def cache(self):
         def cache_decorator(method):
             def wrapper(*a, **kw):
-                cache = shelve.open(self.cache_store)
+                mycache = FileCache(self.cache_store, serialize=False)
+                cache = shelve.Shelf(mycache)
                 key = self.get_key(*a, **kw)
                 if not self.cache_updateable(cache, key):
                     retval = method(*a, **kw)
