@@ -48,27 +48,3 @@ class TestCache(TestCase):
 
         assert c.cache_updateable(cache, key) is True
         cache.close()
-
-    def test_decorator(self):
-        encode_key = lambda a, b, *aa, **kw: "{},{}".format(a, b)
-        retval = int(time.time())
-        c = Cache(encode_key, 'prefix', validate_expiry=lambda *a: a[0])
-
-        try:
-            cache = shelve.open(c.cache_store)
-            del cache[c.get_key(True, 1)]
-            cache.close()
-        except:
-            pass
-
-        @c.cache()
-        def _cache(a, b, t):
-            if not t:
-                return int(time.time())
-            return t
-
-        cache_ret = _cache(True, 1, retval)
-        assert cache_ret == retval
-
-        cache_ret = _cache(True, 1, None)
-        assert cache_ret == retval

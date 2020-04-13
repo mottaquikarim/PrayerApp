@@ -1,4 +1,4 @@
-FROM lambci/lambda:build-python3.6
+FROM lambci/lambda:build-python3.7
 
 # Install nodejs ( base image has node, but not npm? )
 RUN \

@@ -17,7 +17,7 @@ set -exo pipefail
   ./cc-test-reporter before-build
 } || true
 
-coverage run --parallel -m pytest ./test
+coverage run -m pytest ./test
 coverage combine
 coverage report
 coverage xml
