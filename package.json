@@ -20,8 +20,8 @@
   },
   "homepage": "https://github.com/mottaquikarim/PrayerApp",
   "devDependencies": {
-    "serverless": "^1.27.3",
-    "serverless-python-requirements": "3.0.9",
-    "spectacle-docs": "^1.0.7"
+    "serverless": "^1.67.3",
+    "serverless-python-requirements": "5.1.0",
+    "spectacle-docs": "1.1.0"
   }
 }
