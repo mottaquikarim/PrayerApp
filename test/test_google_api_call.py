@@ -104,7 +104,7 @@ class TestGoogleAPICall(object):
             'test': '1',
             'timestamp': 2,
         }, required_params={
-            'test': {'type': str, 'matches': '\d'},
+            'test': {'type': str, 'matches': r'\d'},
             'timestamp': {'type': int},
         })
 
@@ -118,7 +118,7 @@ class TestGoogleQueryEndpoint(TestCase):
             'test': '1',
             'timestamp': 2,
         }, required_params={
-            'test': {'type': str, 'matches': '\d'},
+            'test': {'type': str, 'matches': r'\d'},
             'timestamp': {'type': int},
         })
 
@@ -135,7 +135,7 @@ class TestGoogleQueryEndpoint(TestCase):
             'test': '1',
             'timestamp': 2,
         }, required_params={
-            'test': {'type': str, 'matches': '\d'},
+            'test': {'type': str, 'matches': r'\d'},
             'timestamp': {'type': int},
         })
 
