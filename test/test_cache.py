@@ -1,7 +1,8 @@
 import os
 import pytest
-import shelve
 import time
+
+from fcache.cache import FileCache
 
 from datetime import datetime
 from requests import RequestException
@@ -32,7 +33,8 @@ class TestCache(TestCase):
         encode_key = lambda a, b: "{},{}".format(a, b)
         c = Cache(encode_key, 'prefix', validate_expiry=lambda *a: True)
         key = c.get_key(1, 2)
-        cache = shelve.open(c.cache_store)
+
+        cache = FileCache(c.cache_store, serialize=True, flag='cs')
 
         try:
             del cache[key]

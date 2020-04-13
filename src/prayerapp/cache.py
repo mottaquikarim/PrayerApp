@@ -1,5 +1,3 @@
-import shelve
-
 from datetime import datetime, timedelta
 from time import time
 
@@ -26,6 +24,7 @@ class Cache(object):
 
     def cache_updateable(self, cache, key):
         try:
+            cache[key]
             has_flag = True
         except Exception:
             return False
@@ -38,8 +37,7 @@ class Cache(object):
     def cache(self):
         def cache_decorator(method):
             def wrapper(*a, **kw):
-                mycache = FileCache(self.cache_store, serialize=False)
-                cache = shelve.Shelf(mycache)
+                cache = FileCache(self.cache_store, serialize=True, flag='cs')
                 key = self.get_key(*a, **kw)
                 if not self.cache_updateable(cache, key):
                     retval = method(*a, **kw)
