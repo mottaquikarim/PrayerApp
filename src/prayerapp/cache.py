@@ -1,7 +1,7 @@
-import shelve
-
 from datetime import datetime, timedelta
 from time import time
+
+from fcache.cache import FileCache
 
 from prayerapp.conf import CACHE_STORE
 
@@ -23,11 +23,10 @@ class Cache(object):
         return "{}::{}".format(self.prefix, self.encode_key(*a, **kw))
 
     def cache_updateable(self, cache, key):
-        cache_key = None
         try:
-            cache_key = cache[key]
+            cache[key]
             has_flag = True
-        except:
+        except Exception:
             return False
 
         has_datetime = has_flag and cache[key].get('datetime')
@@ -38,7 +37,7 @@ class Cache(object):
     def cache(self):
         def cache_decorator(method):
             def wrapper(*a, **kw):
-                cache = shelve.open(self.cache_store)
+                cache = FileCache(self.cache_store, serialize=True, flag='cs')
                 key = self.get_key(*a, **kw)
                 if not self.cache_updateable(cache, key):
                     retval = method(*a, **kw)

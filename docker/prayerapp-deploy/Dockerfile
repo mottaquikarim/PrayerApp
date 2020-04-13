@@ -1,8 +1,8 @@
-FROM lambci/lambda:build-python3.6
+FROM lambci/lambda:build-python3.7
 
 # Install nodejs ( base image has node, but not npm? )
 RUN \
-  curl -sL https://rpm.nodesource.com/setup_9.x | bash && \
+  curl -sL https://rpm.nodesource.com/setup_13.x | bash && \
   yum install -y nodejs && \
   yum clean all
 

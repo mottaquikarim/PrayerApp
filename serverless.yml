@@ -5,7 +5,7 @@ plugins:
 
 provider:
   name: aws
-  runtime: python3.6
+  runtime: python3.7
   memorySize: 512
   timeout: 60
   stage: dev

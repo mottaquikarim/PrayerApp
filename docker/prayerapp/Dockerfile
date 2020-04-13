@@ -1,4 +1,4 @@
-FROM python:3.6 
+FROM python:3.7
 
 COPY docker/prayerapp/test.sh /test.sh
 
