@@ -35,7 +35,7 @@ def get_prayer_times(lat, lng, date, calcMethod="ISNA", timeFmt="12h"):
 
     rawOffset = timezone_data.get('rawOffset', None)
     dstOffset = timezone_data.get('dstOffset', None)
-    if not rawOffset or not dstOffset:
+    if not rawOffset and not dstOffset:
         raise Exception('timezone offsets not found!')
 
     pt = PrayTimes(calcMethod=calcMethod)
