@@ -6,6 +6,9 @@ Resource  ./shared.robot
 GET request to /location/{lat}/{lng} returns status code of 200
 	Assert /${STAGE}/location/40.7127753/-74.0059728 Returns 200
 
+GET request to /location/{lat}/{lng} returns status code of 200
+	Assert /${STAGE}/location/-26.195246/28.034088 Returns 200
+
 GET request for location (40.7127753,-74.0059728) at 05/25/18 returns sunset=8:15pm
     ${sub_dict}=    evaluate    json.loads('''{"sunset": "8:15pm"}''')    json
 	Assert /${STAGE}/location/40.7127753/-74.0059728?date=1527249151 Contains ${sub_dict}
